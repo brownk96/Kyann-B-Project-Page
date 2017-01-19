@@ -1,3 +1,6 @@
+/**
+ * Created by kyann.brown on 1/19/2017..
+ */
 //Part 1
 function printFunction(event)
 {
@@ -36,3 +39,39 @@ function hideFunction(event)
 
 var hideButton = $('#button3');
 hideButton.on("click", hideFunction);
+
+//Part 4
+function correctPhoneNumber(event)
+{
+    var phoneNumber = $('#phoneField').val();
+    var regularExpression = /^\d{3}-\d{3}-\d{4}$/;
+
+    if (regularExpression.test(phoneNumber))
+    {
+        console.log("OK");
+    }
+    else
+    {
+        console.log("Bad");
+    }
+}
+
+var phoneButton = $('#button4');
+phoneButton.on("click", correctPhoneNumber);
+
+//Part 5
+function jsonFunction(event)
+{
+    var jsonObject = {};
+
+    jsonObject.firstName = $('#firstName').val();
+    jsonObject.lastName = $('#lastName').val();
+    jsonObject.email = $('#email').val();
+
+    var jsonString = JSON.stringify(jsonObject);
+
+    console.log(jsonObject);
+}
+
+var jsonButton = $('#button5');
+jsonButton.on("click", jsonFunction);
