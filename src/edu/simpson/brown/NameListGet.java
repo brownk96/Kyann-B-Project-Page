@@ -15,21 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  * Created by kyann.brown on 1/26/2017.
  */
 @WebServlet(name = "NameListGet")
+
 public class NameListGet extends HttpServlet {
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-
-        // Replace the line below with your database code that will
-        // write out your JSON file.
-        out.print("{ \"Field\":\"Value\"}");
-
-    }
-}
-
-/*public class NameListGet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
@@ -39,6 +26,7 @@ public class NameListGet extends HttpServlet {
 
         // Use the DAO to get a list of people
         List<Person> peopleList = PersonDAO.getPeople();
+        out.print(peopleList);
 
         // Start the JSON output. We'll have an array of people, so start with a "[" which signifies an array
         out.print("[");
@@ -91,4 +79,4 @@ public class NameListGet extends HttpServlet {
         }
         out.println("\r\n]");
     }
-}*/
+}
