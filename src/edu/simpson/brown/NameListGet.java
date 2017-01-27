@@ -26,7 +26,6 @@ public class NameListGet extends HttpServlet {
 
         // Use the DAO to get a list of people
         List<Person> peopleList = PersonDAO.getPeople();
-        out.print(peopleList); //Test to see if there's anything in the list
 
         // Start the JSON output. We'll have an array of people, so start with a "[" which signifies an array
         out.print("[");
@@ -53,22 +52,22 @@ public class NameListGet extends HttpServlet {
             out.print("\"firstName\" : ");
             out.print("\"");
             out.print(person.getFirst());
-            out.print("\"");
+            out.print("\",");
 
             out.print("\"lastName\" : ");
             out.print("\"");
             out.print(person.getLast());
-            out.print("\"");
+            out.print("\",");
 
             out.print("\"email\" : ");
             out.print("\"");
             out.print(person.getEmail());
-            out.print("\"");
+            out.print("\",");
 
             out.print("\"phone\" : ");
             out.print("\"");
             out.print(person.getPhone());
-            out.print("\"");
+            out.print("\",");
 
             out.print("\"birthday\" : ");
             out.print("\"");

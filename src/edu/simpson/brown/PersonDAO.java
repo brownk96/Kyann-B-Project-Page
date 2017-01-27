@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
-
 public class PersonDAO {
     public static List<Person> getPeople()
     {
