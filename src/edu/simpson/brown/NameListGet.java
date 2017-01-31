@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 
 /**
  * Created by kyann.brown on 1/26/2017.
@@ -27,6 +29,13 @@ public class NameListGet extends HttpServlet {
         // Use the DAO to get a list of people
         List<Person> peopleList = PersonDAO.getPeople();
 
+        Gson gson = new Gson();
+
+        String json = gson.toJson(peopleList);
+
+        out.println(json);
+
+/*
         // Start the JSON output. We'll have an array of people, so start with a "[" which signifies an array
         out.print("[");
 
@@ -77,5 +86,6 @@ public class NameListGet extends HttpServlet {
             out.print("}");
         }
         out.println("\r\n]");
+        */
     }
 }
