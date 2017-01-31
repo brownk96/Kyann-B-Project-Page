@@ -12,9 +12,18 @@ function updateTable() {
         {
             for (var count = 0; count < json_result.length; count++)
             {
+                var row = $("<tr><td>" + json_result[count] + "</tr></td>")
                 console.log(json_result[count].first);
+                console.log(json_result[count].last);
+
             }
+
+            /*if (row != "")
+            {
+                $("#datatable").append(row);
+            }*/
             console.log("Done");
+            console.log("Hi, this is working")
         }
     );
 }
