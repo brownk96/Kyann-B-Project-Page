@@ -9,23 +9,36 @@ function updateTable() {
     var url = "api/name_list_get";
 
     $.getJSON(url, null, function(json_result)
+    {
+        var row = "";
+
+        for (var count = 0; count < json_result.length; count++)
         {
-            for (var count = 0; count < json_result.length; count++)
+            var person = json_result[count];
+
+            row += "<tr>";
+
+            for (var key in person)
             {
-                var row = $("<tr><td>" + json_result[count] + "</tr></td>")
-                console.log(json_result[count].first);
-                console.log(json_result[count].last);
+                personKey = key;
+                personValue = person[key].toString();
+                var rowValue = "<td>" + personValue + "</td>";
+                console.log(personValue);
+                row += rowValue;
 
             }
 
-            /*if (row != "")
-            {
-                $("#datatable").append(row);
-            }*/
-            console.log("Done");
-            console.log("Hi, this is working")
+            row += "</tr>";
         }
-    );
+
+        console.log( $("#datatable").closest('tr'));
+
+        $("#datatable tbody tr")[0].remove();
+        $("#datatable").append(row);
+
+        console.log(row);
+        console.log("Done");
+    });
 }
 
 // Call your code.
