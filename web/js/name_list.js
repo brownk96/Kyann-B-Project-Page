@@ -23,7 +23,6 @@ function updateTable() {
                 personKey = key;
                 personValue = person[key].toString();
                 var rowValue = "<td>" + personValue + "</td>";
-                console.log(personValue);
                 row += rowValue;
 
             }
@@ -31,12 +30,9 @@ function updateTable() {
             row += "</tr>";
         }
 
-        console.log( $("#datatable").closest('tr'));
-
         $("#datatable tbody tr")[0].remove();
         $("#datatable").append(row);
 
-        console.log(row);
         console.log("Done");
     });
 }
