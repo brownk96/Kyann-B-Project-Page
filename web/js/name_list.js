@@ -4,7 +4,6 @@
 // Main Javascript File
 
 function updateTable() {
-    // Here's where your code is going to go.
 
     var url = "api/name_list_get";
 
@@ -22,9 +21,15 @@ function updateTable() {
             {
                 personKey = key;
                 personValue = person[key].toString();
+
+                if(personKey === "phone")
+                {
+                    var phoneNumber = personValue.substring(0,3) + "-" + personValue.substring(3,6) + "-" + personValue.substring(6);
+                    personValue = phoneNumber;
+                }
+
                 var rowValue = "<td>" + personValue + "</td>";
                 row += rowValue;
-
             }
 
             row += "</tr>";
