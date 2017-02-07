@@ -47,7 +47,16 @@ updateTable();
 
 function showDialogAdd()
 {
-    console.log("Openign add item dialog");
+    console.log("Opening add item dialog");
+
+    $('#id').val("");
+    $('#firstName').val("");
+    $('#lastName').val("");
+    $('#email').val("");
+    $('#phone').val("");
+    $('#birthday').val("");
+
+    $('#myModal').modal('show');
 }
 
 
