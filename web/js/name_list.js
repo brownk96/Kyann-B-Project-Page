@@ -44,3 +44,12 @@ function updateTable() {
 
 // Call your code.
 updateTable();
+
+function showDialogAdd()
+{
+    console.log("Openign add item dialog");
+}
+
+
+var addItemButton = $('#addItem');
+addItemButton.on("click", showDialogAdd);
