@@ -111,8 +111,15 @@ function saveFormChanges()
         $('#lastNameGlyph').addClass("glyphicon-ok");
 
         $('lastNameStatus').val("(success)");
-    }else{
+    } else{
         console.log("Bad last name");
+        $('#lastNameDiv').removeClass("has-success");
+        $('#lastNameDiv').addClass("has-error");
+
+        $('#lastNameGlyph').removeClass("glyphicon-ok");
+        $('#lastNameGlyph').addClass("glyphicon-remove");
+
+        $('lastNameStatus').val("(error)");
     }
 
     if (regEmail.test(emailString))
@@ -127,6 +134,14 @@ function saveFormChanges()
         $('emailStatus').val("(success)");
     } else {
         console.log("Bad email");
+        console.log("Bad last name");
+        $('#emailDiv').removeClass("has-success");
+        $('#emailDiv').addClass("has-error");
+
+        $('#emailGlyph').removeClass("glyphicon-ok");
+        $('#emailGlyph').addClass("glyphicon-remove");
+
+        $('emailStatus').val("(error)");
     }
 
     if (regPhone.test(phoneString))
@@ -141,6 +156,14 @@ function saveFormChanges()
         $('phoneStatus').val("(success)");
     } else {
         console.log("Bad phone");
+        console.log("Bad last name");
+        $('#phoneDiv').removeClass("has-success");
+        $('#phoneDiv').addClass("has-error");
+
+        $('#phoneGlyph').removeClass("glyphicon-ok");
+        $('#phoneGlyph').addClass("glyphicon-remove");
+
+        $('phoneStatus').val("(error)");
     }
 
     if (regBirthday.test(birthdayString))
@@ -155,6 +178,14 @@ function saveFormChanges()
         $('birthdayStatus').val("(success)");
     } else {
         console.log("Bad birthday");
+        console.log("Bad last name");
+        $('#birthdayDiv').removeClass("has-success");
+        $('#birthdayDiv').addClass("has-error");
+
+        $('#birthdayGlyph').removeClass("glyphicon-ok");
+        $('#birthdayGlyph').addClass("glyphicon-remove");
+
+        $('birthdayStatus').val("(error)");
     }
 
 }
