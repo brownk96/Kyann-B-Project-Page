@@ -57,6 +57,30 @@ function showDialogAdd()
     $('#birthday').val("");
 
     $('#myModal').modal('show');
+
+    $('#firstNameDiv').removeClass("has-error");
+    $('#lastNameDiv').removeClass("has-error");
+    $('#emailDiv').removeClass("has-error");
+    $('#phoneDiv').removeClass("has-error");
+    $('#birthdayDiv').removeClass("has-error");
+
+    $('#firstNameDiv').removeClass("has-success");
+    $('#lastNameDiv').removeClass("has-success");
+    $('#emailDiv').removeClass("has-success");
+    $('#phoneDiv').removeClass("has-success");
+    $('#birthdayDiv').removeClass("has-success");
+
+    $('#firstNameGlyph').removeClass("glyphicon-remove");
+    $('#lastNameGlyph').removeClass("glyphicon-remove");
+    $('#emailGlyph').removeClass("glyphicon-remove");
+    $('#phoneGlyph').removeClass("glyphicon-remove");
+    $('#birthdayGlyph').removeClass("glyphicon-remove");
+
+    $('#firstNameGlyph').removeClass("glyphicon-ok");
+    $('#lastNameGlyph').removeClass("glyphicon-ok");
+    $('#emailGlyph').removeClass("glyphicon-ok");
+    $('#phoneGlyph').removeClass("glyphicon-ok");
+    $('#birthdayGlyph').removeClass("glyphicon-ok");
 }
 
 
@@ -75,10 +99,10 @@ function saveFormChanges()
     var birthdayString = $('#birthday').val();
 
     var regFirstName = /^[A-Za-z]{1,20}$/;
-    var regLastName = /^[A-Za-z]{1,30}$/;
-    var regEmail = /^\w+@[A-Za-z]+\.+[A-Za-z]{3}$/;
+    var regLastName = /^[A-Za-z']{1,30}$/;
+    var regEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var regPhone = /^\d{3}-\d{3}-\d{4}$/;
-    var regBirthday = /^\d{4}-\d{2}-\d{2}$/;
+    var regBirthday = /^(18|19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
 
     if (regFirstName.test(firstNameString))
     {
