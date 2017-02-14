@@ -45,10 +45,9 @@ function updateTable() {
 // Call your code.
 updateTable();
 
+//Show the form box
 function showDialogAdd()
 {
-    console.log("Opening add item dialog");
-
     $('#id').val("");
     $('#firstName').val("");
     $('#lastName').val("");
@@ -83,14 +82,13 @@ function showDialogAdd()
     $('#birthdayGlyph').removeClass("glyphicon-ok");
 }
 
-
 var addItemButton = $('#addItem');
 addItemButton.on("click", showDialogAdd);
 
-
+//Save changes in form - at this point, validate
 function saveFormChanges()
 {
-    console.log("Hi, save changes works");
+    var valid_Form = true;
 
     var firstNameString = $('#firstName').val();
     var lastNameString = $('#lastName').val();
@@ -106,7 +104,6 @@ function saveFormChanges()
 
     if (regFirstName.test(firstNameString))
     {
-        console.log("Okay first name");
         $('#firstNameDiv').removeClass("has-error");
         $('#firstNameDiv').addClass("has-success");
 
@@ -115,7 +112,6 @@ function saveFormChanges()
 
         $('firstNameStatus').val("(success)");
     } else {
-        console.log("Bad first name");
         $('#firstNameDiv').removeClass("has-success");
         $('#firstNameDiv').addClass("has-error");
 
@@ -123,11 +119,11 @@ function saveFormChanges()
         $('#firstNameGlyph').addClass("glyphicon-remove");
 
         $('firstNameStatus').val("(error)");
+        valid_Form = false;
     }
 
     if (regLastName.test(lastNameString))
     {
-        console.log("Okay last Name");
         $('#lastNameDiv').removeClass("has-error");
         $('#lastNameDiv').addClass("has-success");
 
@@ -136,7 +132,6 @@ function saveFormChanges()
 
         $('lastNameStatus').val("(success)");
     } else{
-        console.log("Bad last name");
         $('#lastNameDiv').removeClass("has-success");
         $('#lastNameDiv').addClass("has-error");
 
@@ -144,11 +139,11 @@ function saveFormChanges()
         $('#lastNameGlyph').addClass("glyphicon-remove");
 
         $('lastNameStatus').val("(error)");
+        valid_Form = false;
     }
 
     if (regEmail.test(emailString))
     {
-        console.log("Good email");
         $('#emailDiv').removeClass("has-error");
         $('#emailDiv').addClass("has-success");
 
@@ -157,8 +152,6 @@ function saveFormChanges()
 
         $('emailStatus').val("(success)");
     } else {
-        console.log("Bad email");
-        console.log("Bad last name");
         $('#emailDiv').removeClass("has-success");
         $('#emailDiv').addClass("has-error");
 
@@ -166,11 +159,11 @@ function saveFormChanges()
         $('#emailGlyph').addClass("glyphicon-remove");
 
         $('emailStatus').val("(error)");
+        valid_Form = false;
     }
 
     if (regPhone.test(phoneString))
     {
-        console.log("Good phone");
         $('#phoneDiv').removeClass("has-error");
         $('#phoneDiv').addClass("has-success");
 
@@ -179,8 +172,6 @@ function saveFormChanges()
 
         $('phoneStatus').val("(success)");
     } else {
-        console.log("Bad phone");
-        console.log("Bad last name");
         $('#phoneDiv').removeClass("has-success");
         $('#phoneDiv').addClass("has-error");
 
@@ -188,11 +179,11 @@ function saveFormChanges()
         $('#phoneGlyph').addClass("glyphicon-remove");
 
         $('phoneStatus').val("(error)");
+        valid_Form = false;
     }
 
     if (regBirthday.test(birthdayString))
     {
-        console.log("Good birthday");
         $('#birthdayDiv').removeClass("has-error");
         $('#birthdayDiv').addClass("has-success");
 
@@ -201,8 +192,6 @@ function saveFormChanges()
 
         $('birthdayStatus').val("(success)");
     } else {
-        console.log("Bad birthday");
-        console.log("Bad last name");
         $('#birthdayDiv').removeClass("has-success");
         $('#birthdayDiv').addClass("has-error");
 
@@ -210,11 +199,27 @@ function saveFormChanges()
         $('#birthdayGlyph').addClass("glyphicon-remove");
 
         $('birthdayStatus').val("(error)");
+        valid_Form = false;
+    }
+
+    if (valid_Form)
+    {
+        console.log("True");
+        var url = "api/name_list_edit";
+        var dataToServer = {firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
+
+        console.log(dataToServer);
+
+        $.post(url, dataToServer, function (dataFromServer) {
+            console.log("Finished calling servlet");
+            console.log(dataFromServer);
+        });
+    }
+    else {
+        console.log("Oh no");
     }
 
 }
-
-
 
 var saveButtonChanges = $('#saveChanges');
 saveButtonChanges.on("click", saveFormChanges);
