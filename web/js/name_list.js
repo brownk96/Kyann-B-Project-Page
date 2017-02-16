@@ -24,7 +24,17 @@ function updateTable() {
 
                 if(personKey === "phone")
                 {
-                    var phoneNumber = personValue.substring(0,3) + "-" + personValue.substring(3,6) + "-" + personValue.substring(6);
+                    var phoneNumber;
+
+                    if(personValue.length === 12)
+                    {
+                        phoneNumber= personValue;
+                    }
+                    else
+                    {
+                        phoneNumber = personValue.substring(0,3) + "-" + personValue.substring(3,6) + "-" + personValue.substring(6);
+
+                    }
                     personValue = phoneNumber;
                 }
 
@@ -35,10 +45,14 @@ function updateTable() {
             row += "</tr>";
         }
 
-        $("#datatable tbody tr")[0].remove();
+        var currentRows = json_result.length;
+        console.log(currentRows);
+        for (var remove = 0; count < json_result.length; count++)
+        {
+            $("#datatable tbody tr")[remove].remove();
+            console.log($("#datatable tbody tr")[remove])
+        }
         $("#datatable").append(row);
-
-        console.log("Done");
     });
 }
 
@@ -204,7 +218,6 @@ function saveFormChanges()
 
     if (valid_Form)
     {
-        console.log("True");
         var url = "api/name_list_edit";
         var dataToServer = {firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
 
@@ -218,6 +231,8 @@ function saveFormChanges()
     else {
         console.log("Oh no");
     }
+
+    updateTable();
 
 }
 
