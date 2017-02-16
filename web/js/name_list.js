@@ -45,12 +45,6 @@ function updateTable() {
             row += "</tr>";
         }
 
-        //var currentRows = json_result.length;
-        //console.log(currentRows);
-        //for (var removing = 0; removing < json_result.length; removing++)
-        ///{
-         //   $("#datatable tbody tr")[removing].remove();
-        //}
         $("#datatable tbody").empty();
         $("#datatable").append(row);
     });
@@ -112,7 +106,7 @@ function saveFormChanges()
 
     var regFirstName = /^[A-Za-z]{1,20}$/;
     var regLastName = /^[A-Za-z']{1,30}$/;
-    var regEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    var regEmail = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var regPhone = /^\d{3}-\d{3}-\d{4}$/;
     var regBirthday = /^(18|19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
 
