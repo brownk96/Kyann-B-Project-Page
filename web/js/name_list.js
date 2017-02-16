@@ -45,13 +45,13 @@ function updateTable() {
             row += "</tr>";
         }
 
-        var currentRows = json_result.length;
-        console.log(currentRows);
-        for (var remove = 0; count < json_result.length; count++)
-        {
-            $("#datatable tbody tr")[remove].remove();
-            console.log($("#datatable tbody tr")[remove])
-        }
+        //var currentRows = json_result.length;
+        //console.log(currentRows);
+        //for (var removing = 0; removing < json_result.length; removing++)
+        ///{
+         //   $("#datatable tbody tr")[removing].remove();
+        //}
+        $("#datatable tbody").empty();
         $("#datatable").append(row);
     });
 }
