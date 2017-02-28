@@ -96,7 +96,7 @@ addItemButton.on("click", showDialogAdd);
 //Save changes in form - at this point, validate
 function saveFormChanges()
 {
-    var valid_Form = true;
+    /*var valid_Form = true;*/
 
     var firstNameString = $('#firstName').val();
     var lastNameString = $('#lastName').val();
@@ -104,7 +104,7 @@ function saveFormChanges()
     var phoneString = $('#phone').val();
     var birthdayString = $('#birthday').val();
 
-    var regFirstName = /^[A-Za-z]{1,20}$/;
+    /*var regFirstName = /^[A-Za-z]{1,20}$/;
     var regLastName = /^[A-Za-z']{1,30}$/;
     var regEmail = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var regPhone = /^\d{3}-\d{3}-\d{4}$/;
@@ -211,7 +211,7 @@ function saveFormChanges()
     }
 
     if (valid_Form)
-    {
+    {*/
         var url = "api/name_list_edit";
         var dataToServer = {firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
 
@@ -222,11 +222,10 @@ function saveFormChanges()
             console.log(dataFromServer);
             updateTable();
         });
-    }
+    /*}
     else {
         console.log("Oh no");
-    }
-
+    }*/
 
 
 }

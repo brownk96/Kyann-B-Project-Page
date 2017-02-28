@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PersonDAO {
+public class PersonDAO
+{
     public static List<Person> getPeople()
     {
         Logger log = Logger.getLogger(DBHelper.class.getName());
@@ -58,5 +59,38 @@ public class PersonDAO {
         }
         // Done! Return the results
         return list;
+    }
+
+    public static void editPerson(String firstName, String lastName, String email, String phone, String birthday)
+    {
+        Logger log = Logger.getLogger(DBHelper.class.getName());
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try
+        {
+            conn = DBHelper.getConnection();
+
+            String sql = "INSERT INTO person (first, last, email, phone, birthday) VALUES(?, ?, ?, ?, ?);";
+
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, firstName);
+            stmt.setString(2, lastName);
+            stmt.setString(3, email);
+            stmt.setString(4, phone);
+            stmt.setString(5, birthday);
+
+            stmt.executeUpdate();
+        }
+        catch(SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se );
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Error", e );
+        } finally {
+            try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
+            try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
+        }
     }
 }

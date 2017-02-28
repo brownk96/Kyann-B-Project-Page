@@ -1,20 +1,14 @@
 package edu.simpson.brown;
 
-import com.google.gson.Gson;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 
@@ -22,6 +16,23 @@ import java.util.logging.Logger;
  * Created by kyann.brown on 2/14/2017.
  */
 public class NameListEdit extends HttpServlet {
+
+    //back end validate here
+
+    private Pattern firstNameValidationPattern;
+    private Pattern lastNameValidationPattern;
+    private Pattern emailValidationPattern;
+    private Pattern phoneValidationPattern;
+    private Pattern birthdayValidationPattern;
+
+    public NameListEdit(){
+        firstNameValidationPattern = Pattern.compile("^[A-Za-z]{1,20}$");
+        lastNameValidationPattern = Pattern.compile("^[A-Za-z']{1,30}$");
+        emailValidationPattern = Pattern.compile("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+        phoneValidationPattern = Pattern.compile("\\d{3}-\\d{3}-\\d{4}$");
+        birthdayValidationPattern =Pattern.compile("^(18|19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");
+    }
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/plain");
@@ -35,41 +46,27 @@ public class NameListEdit extends HttpServlet {
         String phone = request.getParameter("phone");
         String birthday = request.getParameter("birthday");
 
+        out.println("firstname " + firstName);
+        out.println("lastname " + lastName);
+        out.println("email " + email);
+        out.println("phone " + phone);
+        out.println("birthday " + birthday);
 
-        Logger log = Logger.getLogger(DBHelper.class.getName());
+        //PersonDAO.editPerson(firstName, lastName, email, phone, birthday);
 
-        out.println(firstName);
-        out.println(lastName);
-        out.println(email);
-        out.println(phone);
-        out.println(birthday);
+        //matcher
+        Matcher first = firstNameValidationPattern.matcher(firstName);
+        Matcher last = lastNameValidationPattern.matcher(lastName);
+        Matcher emailAddress = emailValidationPattern.matcher(email);
+        Matcher phoneNumber = phoneValidationPattern.matcher(phone);
+        Matcher birthdayDate = birthdayValidationPattern.matcher(birthday);
 
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-    try
-    {
-        conn = DBHelper.getConnection();
-
-        String sql = "INSERT INTO person (first, last, email, phone, birthday) VALUES(?, ?, ?, ?, ?);";
-
-        stmt = conn.prepareStatement(sql);
-
-        stmt.setString(1, firstName);
-        stmt.setString(2, lastName);
-        stmt.setString(3, email);
-        stmt.setString(4, phone);
-        stmt.setString(5, birthday);
-
-        stmt.executeUpdate();
+        if(first.find() && last.find() && emailAddress.find() && phoneNumber.find() && birthdayDate.find())
+        {
+            out.println("Passed validation");
+        }else {
+            out.println("Did not pass validation");
+        }
     }
-    catch(SQLException se) {
-        log.log(Level.SEVERE, "SQL Error", se );
-    } catch (Exception e) {
-        log.log(Level.SEVERE, "Error", e );
-    } finally {
-        try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
-        try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
-    }
-    }
+    //Put stuff below in PersonDAO
 }
