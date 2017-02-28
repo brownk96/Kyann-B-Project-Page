@@ -208,12 +208,10 @@ function saveFormChanges()
 
         $('birthdayStatus').val("(error)");
         valid_Form = false;
-    }*/
-
-    var valid_Form =
+    }
 
     if (valid_Form)
-    {
+    {*/
         var url = "api/name_list_edit";
         var dataToServer = {firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
 
@@ -224,10 +222,12 @@ function saveFormChanges()
             console.log(dataFromServer);
             updateTable();
         });
-    }
+
+        
+    /*}
     else {
         console.log("Oh no");
-    }
+    }*/
 
 
 }

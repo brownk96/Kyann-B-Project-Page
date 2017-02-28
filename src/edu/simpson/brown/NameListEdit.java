@@ -67,6 +67,7 @@ public class NameListEdit extends HttpServlet {
         if(first.find() && last.find() && emailAddress.find() && phoneNumber.find() && birthdayDate.find())
         {
             out.println("Passed validation");
+            PersonDAO.editPerson(firstName, lastName, email, phone, birthday);
 
         }else {
             out.println("Did not pass validation");
