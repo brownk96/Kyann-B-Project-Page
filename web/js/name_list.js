@@ -220,13 +220,14 @@ function saveFormChanges()
         $.post(url, dataToServer, function (dataFromServer) {
             console.log("Finished calling servlet");
             console.log(dataFromServer);
+            updateTable();
         });
     }
     else {
         console.log("Oh no");
     }
 
-    updateTable();
+
 
 }
 
