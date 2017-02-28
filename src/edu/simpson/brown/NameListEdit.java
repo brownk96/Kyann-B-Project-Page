@@ -25,7 +25,10 @@ public class NameListEdit extends HttpServlet {
     private Pattern phoneValidationPattern;
     private Pattern birthdayValidationPattern;
 
-    public NameListEdit(){
+    boolean validation = true;
+
+    public NameListEdit()
+    {
         firstNameValidationPattern = Pattern.compile("^[A-Za-z]{1,20}$");
         lastNameValidationPattern = Pattern.compile("^[A-Za-z']{1,30}$");
         emailValidationPattern = Pattern.compile("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
@@ -64,8 +67,10 @@ public class NameListEdit extends HttpServlet {
         if(first.find() && last.find() && emailAddress.find() && phoneNumber.find() && birthdayDate.find())
         {
             out.println("Passed validation");
+
         }else {
             out.println("Did not pass validation");
+            validation = false;
         }
     }
     //Put stuff below in PersonDAO
