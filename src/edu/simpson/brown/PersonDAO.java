@@ -93,4 +93,31 @@ public class PersonDAO
             try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
         }
     }
+
+    public static void deletePerson (int id) {
+        Logger log = Logger.getLogger(DBHelper.class.getName());
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DBHelper.getConnection();
+
+            String sql = "DELETE FROM person WHERE id = ;";
+
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, id);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se);
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Error", e);
+        } finally {
+            try {stmt.close();} catch (Exception e) {log.log(Level.SEVERE, "Error", e);}
+            try {conn.close();} catch (Exception e) {log.log(Level.SEVERE, "Error", e);}
+        }
+    }
 }
