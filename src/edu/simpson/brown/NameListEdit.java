@@ -25,7 +25,7 @@ public class NameListEdit extends HttpServlet {
     private Pattern phoneValidationPattern;
     private Pattern birthdayValidationPattern;
 
-    boolean validation = true;
+    //boolean validation = true;
 
     public NameListEdit()
     {
@@ -49,14 +49,6 @@ public class NameListEdit extends HttpServlet {
         String phone = request.getParameter("phone");
         String birthday = request.getParameter("birthday");
 
-        out.println("firstname " + firstName);
-        out.println("lastname " + lastName);
-        out.println("email " + email);
-        out.println("phone " + phone);
-        out.println("birthday " + birthday);
-
-        //PersonDAO.editPerson(firstName, lastName, email, phone, birthday);
-
         //matcher
         Matcher first = firstNameValidationPattern.matcher(firstName);
         Matcher last = lastNameValidationPattern.matcher(lastName);
@@ -71,8 +63,7 @@ public class NameListEdit extends HttpServlet {
 
         }else {
             out.println("Did not pass validation");
-            validation = false;
+            //validation = false;
         }
     }
-    //Put stuff below in PersonDAO
 }

@@ -221,9 +221,10 @@ function saveFormChanges()
             console.log("Finished calling servlet");
             console.log(dataFromServer);
             updateTable();
+            $('#myModal').modal('hide');
         });
 
-        
+
     /*}
     else {
         console.log("Oh no");
