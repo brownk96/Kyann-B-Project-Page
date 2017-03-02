@@ -103,11 +103,11 @@ public class PersonDAO
         try {
             conn = DBHelper.getConnection();
 
-            String sql = "DELETE FROM person WHERE id = ;";
+            String sql = "DELETE FROM person WHERE id = ?;";
 
             stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, id);
+            stmt.setInt(1, id);
 
             stmt.executeUpdate();
 
