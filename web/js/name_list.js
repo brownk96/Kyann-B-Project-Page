@@ -38,16 +38,26 @@ function updateTable() {
                     personValue = phoneNumber;
                 }
 
+                if (personKey === "id")
+                {
+                    var personID = personValue;
+                }
                 var rowValue = "<td>" + personValue + "</td>";
                 row += rowValue;
             }
+            row += "<td><button type='button' name='delete' class='deleteButton btn' value='" + personID + "'>Delete</button></td>";
 
             row += "</tr>";
         }
 
         $("#datatable tbody").empty();
         $("#datatable").append(row);
+
+        var buttons = $(".deleteButton");
+        buttons.on("click", deleteItem);
     });
+
+
 }
 
 // Call your code.
@@ -96,7 +106,7 @@ addItemButton.on("click", showDialogAdd);
 //Save changes in form - at this point, validate
 function saveFormChanges()
 {
-    /*var valid_Form = true;*/
+    var valid_Form = true;
 
     var firstNameString = $('#firstName').val();
     var lastNameString = $('#lastName').val();
@@ -104,7 +114,7 @@ function saveFormChanges()
     var phoneString = $('#phone').val();
     var birthdayString = $('#birthday').val();
 
-    /*var regFirstName = /^[A-Za-z]{1,20}$/;
+    var regFirstName = /^[A-Za-z]{1,20}$/;
     var regLastName = /^[A-Za-z']{1,30}$/;
     var regEmail = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var regPhone = /^\d{3}-\d{3}-\d{4}$/;
@@ -210,8 +220,10 @@ function saveFormChanges()
         valid_Form = false;
     }
 
+    valid_Form = true;
+
     if (valid_Form)
-    {*/
+    {
         var url = "api/name_list_edit";
         var dataToServer = {firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
 
@@ -221,18 +233,29 @@ function saveFormChanges()
             console.log("Finished calling servlet");
             console.log(dataFromServer);
             updateTable();
-            $('#myModal').modal('hide');
         });
 
-
-    /*}
+        //$('#myModal').modal('hide');
+    }
     else {
         console.log("Oh no");
-    }*/
-
-
+    }
 }
 
 var saveButtonChanges = $('#saveChanges');
 saveButtonChanges.on("click", saveFormChanges);
+
+
+function deleteItem(e) {
+    console.debug("Delete");
+    console.debug(e.target.value);
+
+    var url = "api/name_list_delete";
+    var dataToServer = {id: e.target.value}
+
+    $.post(url, dataToServer, function (dataFromServer) {
+        console.log(dataFromServer);
+    });
+}
+
 

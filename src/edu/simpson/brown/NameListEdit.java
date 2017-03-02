@@ -9,23 +9,16 @@ import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
-
 /**
  * Created by kyann.brown on 2/14/2017.
  */
 public class NameListEdit extends HttpServlet {
-
-    //back end validate here
 
     private Pattern firstNameValidationPattern;
     private Pattern lastNameValidationPattern;
     private Pattern emailValidationPattern;
     private Pattern phoneValidationPattern;
     private Pattern birthdayValidationPattern;
-
-    //boolean validation = true;
 
     public NameListEdit()
     {
@@ -63,7 +56,6 @@ public class NameListEdit extends HttpServlet {
 
         }else {
             out.println("Did not pass validation");
-            //validation = false;
         }
     }
 }
