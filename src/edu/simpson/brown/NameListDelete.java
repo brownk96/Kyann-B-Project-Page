@@ -13,7 +13,8 @@ import java.util.regex.Pattern;
  * Created by kyann.brown on 3/2/2017.
  */
 @WebServlet(name = "NameListDelete")
-public class NameListDelete extends HttpServlet {
+public class NameListDelete extends HttpServlet
+{
 
     private Pattern idValidation;
 
@@ -21,13 +22,22 @@ public class NameListDelete extends HttpServlet {
     {
         idValidation = Pattern.compile("\\d");
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        int id
-        PersonDAO.deletePerson(id);
-    }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+
+        Matcher idNumber = idValidation.matcher(id);
+
+
+        if (idNumber.find())
+        {
+            int idNum = Integer.parseInt(id);
+
+            PersonDAO.deletePerson(idNum);
+        }
+
 
     }
 }

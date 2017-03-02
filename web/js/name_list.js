@@ -220,8 +220,6 @@ function saveFormChanges()
         valid_Form = false;
     }
 
-    valid_Form = true;
-
     if (valid_Form)
     {
         var url = "api/name_list_edit";
@@ -233,9 +231,10 @@ function saveFormChanges()
             console.log("Finished calling servlet");
             console.log(dataFromServer);
             updateTable();
+            $('#myModal').modal('hide');
         });
 
-        //$('#myModal').modal('hide');
+
     }
     else {
         console.log("Oh no");
@@ -255,6 +254,7 @@ function deleteItem(e) {
 
     $.post(url, dataToServer, function (dataFromServer) {
         console.log(dataFromServer);
+        updateTable();
     });
 }
 
