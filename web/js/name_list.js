@@ -46,6 +46,7 @@ function updateTable() {
                 row += rowValue;
             }
             row += "<td><button type='button' name='delete' class='deleteButton btn' value='" + personID + "'>Delete</button></td>";
+            row += "<td><button type='button' name='edit' class='editButton btn' value='" + personID + "'>Edit</button></td>";
 
             row += "</tr>";
         }
@@ -55,6 +56,9 @@ function updateTable() {
 
         var buttons = $(".deleteButton");
         buttons.on("click", deleteItem);
+
+        var editButtons = $(".editButton");
+        editButtons.on("click", editItem);
     });
 
 
@@ -108,6 +112,7 @@ function saveFormChanges()
 {
     var valid_Form = true;
 
+    var idString = $('#ID').val();
     var firstNameString = $('#firstName').val();
     var lastNameString = $('#lastName').val();
     var emailString = $('#email').val();
@@ -223,7 +228,7 @@ function saveFormChanges()
     if (valid_Form)
     {
         var url = "api/name_list_edit";
-        var dataToServer = {firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
+        var dataToServer = {id: idString, firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
 
         console.log(dataToServer);
 
@@ -258,4 +263,26 @@ function deleteItem(e) {
     });
 }
 
+function editItem(e) {
+    console.debug("Edit");
+    console.debug(e.target.value);
+
+    var id = e.target.value;
+    console.debug("Hey is id real? " + id);
+
+    var firstName = e.target.parentNode.parentNode.querySelectorAll("td")[1].innerHTML;
+    var lastName = e.target.parentNode.parentNode.querySelectorAll("td")[2].innerHTML;
+    var email = e.target.parentNode.parentNode.querySelectorAll("td")[3].innerHTML;
+    var phone = e.target.parentNode.parentNode.querySelectorAll("td")[4].innerHTML;
+    var birthday = e.target.parentNode.parentNode.querySelectorAll("td")[5].innerHTML;
+
+    $('#ID').val(id);
+    $('#firstName').val(firstName);
+    $('#lastName').val(lastName);
+    $('#email').val(email);
+    $('#phone').val(phone);
+    $('#birthday').val(birthday);
+
+    $('#myModal').modal('show');
+}
 

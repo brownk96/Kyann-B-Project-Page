@@ -12,10 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PersonDAO
-{
-    public static List<Person> getPeople()
-    {
+public class PersonDAO {
+    public static List<Person> getPeople() {
         Logger log = Logger.getLogger(DBHelper.class.getName());
 
         log.log(Level.FINE, "Get people");
@@ -35,7 +33,7 @@ public class PersonDAO
 
             rs = stmt.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 Person person = new Person();
 
                 person.setId(rs.getInt("id"));
@@ -48,28 +46,37 @@ public class PersonDAO
                 list.add(person);
             }
         } catch (SQLException se) {
-            log.log(Level.SEVERE, "SQL Error", se );
+            log.log(Level.SEVERE, "SQL Error", se);
         } catch (Exception e) {
-            log.log(Level.SEVERE, "Error", e );
+            log.log(Level.SEVERE, "Error", e);
         } finally {
             // Ok, close our result set, statement, and connection
-            try { rs.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
-            try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
-            try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
+            try {
+                rs.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
         }
         // Done! Return the results
         return list;
     }
 
-    public static void editPerson(String firstName, String lastName, String email, String phone, String birthday)
-    {
+    public static void editPerson(String firstName, String lastName, String email, String phone, String birthday) {
         Logger log = Logger.getLogger(DBHelper.class.getName());
 
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try
-        {
+        try {
             conn = DBHelper.getConnection();
 
             String sql = "INSERT INTO person (first, last, email, phone, birthday) VALUES(?, ?, ?, ?, ?);";
@@ -83,18 +90,25 @@ public class PersonDAO
             stmt.setString(5, birthday);
 
             stmt.executeUpdate();
-        }
-        catch(SQLException se) {
-            log.log(Level.SEVERE, "SQL Error", se );
+        } catch (SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se);
         } catch (Exception e) {
-            log.log(Level.SEVERE, "Error", e );
+            log.log(Level.SEVERE, "Error", e);
         } finally {
-            try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
-            try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
         }
     }
 
-    public static void deletePerson (int id) {
+    public static void deletePerson(int id) {
         Logger log = Logger.getLogger(DBHelper.class.getName());
 
         Connection conn = null;
@@ -116,8 +130,57 @@ public class PersonDAO
         } catch (Exception e) {
             log.log(Level.SEVERE, "Error", e);
         } finally {
-            try {stmt.close();} catch (Exception e) {log.log(Level.SEVERE, "Error", e);}
-            try {conn.close();} catch (Exception e) {log.log(Level.SEVERE, "Error", e);}
+            try {
+                stmt.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+        }
+    }
+
+    public static void updatePerson(int id, String firstName, String lastName, String email, String phone, String birthday) {
+        Logger log = Logger.getLogger(DBHelper.class.getName());
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBHelper.getConnection();
+
+            String sql = "UPDATE person SET first=?, last=?, email=?, phone=?, birthday=? WHERE id=?";
+
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, firstName);
+            stmt.setString(2, lastName);
+            stmt.setString(3, email);
+            stmt.setString(4, phone);
+            stmt.setString(5, birthday);
+            stmt.setInt(6, id);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se);
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Error", e);
+        } finally {
+            try {
+                stmt.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
         }
     }
 }

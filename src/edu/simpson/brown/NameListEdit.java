@@ -42,6 +42,9 @@ public class NameListEdit extends HttpServlet {
         String phone = request.getParameter("phone");
         String birthday = request.getParameter("birthday");
 
+        String id = request.getParameter("id");
+        out.println("This is the id gotten " + id);
+
         //matcher
         Matcher first = firstNameValidationPattern.matcher(firstName);
         Matcher last = lastNameValidationPattern.matcher(lastName);
@@ -52,7 +55,15 @@ public class NameListEdit extends HttpServlet {
         if(first.find() && last.find() && emailAddress.find() && phoneNumber.find() && birthdayDate.find())
         {
             out.println("Passed validation");
-            PersonDAO.editPerson(firstName, lastName, email, phone, birthday);
+            if(id == null) {
+                PersonDAO.editPerson(firstName, lastName, email, phone, birthday);
+                out.println("Insert record");
+            }
+            else {
+                int idNum = Integer.parseInt(id);
+                PersonDAO.updatePerson(idNum, firstName, lastName, email, phone, birthday);
+                out.println("Update record");
+            }
 
         }else {
             out.println("Did not pass validation");
