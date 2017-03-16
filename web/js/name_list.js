@@ -228,7 +228,13 @@ function saveFormChanges()
     if (valid_Form)
     {
         var url = "api/name_list_edit";
-        var dataToServer = {id: idString, firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
+
+        var dataToServer = {firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
+
+        if (idString != "")
+        {
+            dataToServer = {id: idString, firstName : firstNameString, lastName : lastNameString, email : emailString, phone : phoneString, birthday : birthdayString};
+        }
 
         console.log(dataToServer);
 
