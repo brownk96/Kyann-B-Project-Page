@@ -13,6 +13,7 @@
         <url-pattern>/api/name_list_get</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>NameListEdit</servlet-name>
         <servlet-class>edu.simpson.brown.NameListEdit</servlet-class>
@@ -23,6 +24,7 @@
         <url-pattern>/api/name_list_edit</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>NameListDelete</servlet-name>
         <servlet-class>edu.simpson.brown.NameListDelete</servlet-class>
@@ -31,6 +33,28 @@
     <servlet-mapping>
         <servlet-name>NameListDelete</servlet-name>
         <url-pattern>/api/name_list_delete</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>edu.simpson.brown.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/api/login_servlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>GetLoginServlet</servlet-name>
+        <servlet-class>edu.simpson.brown.GetLoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetLoginServlet</servlet-name>
+        <url-pattern>/api/get_login_servlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
