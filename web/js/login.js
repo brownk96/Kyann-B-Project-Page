@@ -14,7 +14,7 @@ function invalidateSessionButton() {
 
 function getSessionJava() {
 
-    var url = "api/get_session_servlet";
+    var url = "api/get_login_servlet";
 
     $.post(url, null, function (dataFromServer) {
         console.log("Finished calling servlet.");
@@ -25,7 +25,7 @@ function getSessionJava() {
 
 function setSessionJava() {
 
-    var url = "api/set_session_servlet";
+    var url = "api/login_servlet";
 
     var sessionKey = $("#sessionKey").val();
     var sessionValue = $("#sessionValue").val();
