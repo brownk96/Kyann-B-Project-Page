@@ -1,50 +1,64 @@
 /**
- * Created by kyann.brown on 3/23/2017.
+ * Created by kyann.brown on 3/23/2017
  */
 <!-- AJAX Post -->
-function invalidateSessionButton() {
+function logOutButton() {
 
-    var url = "api/invalidate_session_servlet";
+    var url = "api/logout_servlet";
 
     $.post(url, null, function (dataFromServer) {
         console.log("Finished calling servlet.");
         console.log(dataFromServer);
+        getLoginButton();
     });
+
+
 }
 
-function getSessionJava() {
+function getLoginButton() {
 
     var url = "api/get_login_servlet";
 
     $.post(url, null, function (dataFromServer) {
         console.log("Finished calling servlet.");
         console.log(dataFromServer);
-        $('#getSessionResult').html(dataFromServer)
+        $('#getSessionResult').html(dataFromServer);
+
+        if(dataFromServer.equals(null))
+        {
+            document.getElementByID("logOutDiv").style.display = "none";
+        }
     });
 }
 
-function setSessionJava() {
+function loginButton() {
 
     var url = "api/login_servlet";
 
-    var sessionKey = $("#sessionKey").val();
-    var sessionValue = $("#sessionValue").val();
+    //var loginKey = $("#sessionKey").val();
+    var loginValue = $("#sessionValue").val();
 
-    var dataToServer = {sessionKey : sessionKey, sessionValue : sessionValue};
+    var dataToServer = {sessionValue : loginValue};
 
     $.post(url, dataToServer, function (dataFromServer) {
         console.log("Finished calling servlet.");
         console.log(dataFromServer);
-        $("#sessionKey").val("");
+        //$("#sessionKey").val("");
         $("#sessionValue").val("");
+        getLoginButton();
+
     });
+
+
 }
-button = $('#getSessionJava');
-button.on("click", getSessionJava);
+button = $('#getLogin');
+button.on("click", getLoginButton);
 
-button = $('#setSessionJava');
-button.on("click", setSessionJava);
+button = $('#login');
+button.on("click", loginButton);
 
 
-button = $('#invalidateSession');
-button.on("click", invalidateSessionButton);
+button = $('#logOut');
+button.on("click", logOutButton);
+
+getLoginButton();

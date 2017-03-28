@@ -2,6 +2,10 @@
 
 <html lang="en">
 <head>
+    <!--<style type="text/css">
+    .logOutDiv{display:none;}
+        #login:hover ~ .logOutDiv{display: block;}
+    </style>-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -33,11 +37,11 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Home</a></li>
                 <li><a href="javascript_assignment.html">Javascript Assignment</a></li>
-                <li><a href="test_javascript.html">Test Javascript</a></li>
+                <!-- <li><a href="test_javascript.html">Test Javascript</a></li> -->
                 <li><a href="name_list.html">Name List</a></li>
-                <li><a href="form_demo.html">Form Demo</a></li>
-                <li><a href="cookie_demo.html">Cookie Demo</a></li>
-                <li><a href="session_demo.html">Session Demo</a></li>
+                <!--<li><a href="form_demo.html">Form Demo</a></li>
+                <li><a href="cookie_demo.html">Cookie Demo</a></li> -->
+                <li><a href="login.html">Login</a></li>
 
             </ul>
         </div>
@@ -45,22 +49,25 @@
 </nav>
 
 <div class="container">
-    <h1>Session Demo</h1>
-    <h2>Set Session</h2>
+    <h1>Login Demo</h1>
+    <h2>Login</h2>
 
     <div>
-        <input type="text" id="sessionKey" placeholder="Session Key">
-        <input type="text" id="sessionValue" placeholder="Session Value">
+        <!--<input type="text" id="sessionKey" placeholder="Session Key"> -->
+        <input type="text" id="sessionValue" placeholder="User ID">
     </div>
-    <label for="setSessionJava">Back-End Java SetSession</label>
-    <button id="setSessionJava">Go</button><br />
+    <label for="login">Login</label>
+    <button id="login">Go</button><br />
 
-    <h2>Clear Session</h2>
-    <button id="invalidateSession">Invalidate Session</button>
+    <div class="logOutDiv">
+    <h2>Log Out</h2>
+    <button id="logOut">Log Out</button>
+    </div>
 
-    <h2>Get Session</h2>
-    <label for="getSessionJava">Back-End Java GetSession</label>
-    <button id="getSessionJava">Go</button><br />
+
+    <h2>Welcome!</h2>
+    <label for="getLogin">Get login info</label>
+    <button id="getLogin">Go</button><br/>
 
     <pre id="getSessionResult">
     </pre>

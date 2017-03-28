@@ -1,7 +1,7 @@
 package edu.simpson.brown;
 
 /**
- * Created by kyann.brown on 3/23/2017.
+ * Created by kyann.brown on 3/23/2017
  */
 
 import javax.servlet.ServletException;
@@ -20,9 +20,21 @@ public class GetLoginServlet extends HttpServlet {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
 
+        HttpSession session = request.getSession();
+
+        String loginID = (String)session.getAttribute("loginID");
+
+        if(loginID != null) {
+            out.println("You are logged in as '" + loginID + "'.");
+        }else
+        {
+            out.println("You are not logged in.");
+        }
+
+
         // --- Sessions ---
 
-        // - This example uses a session to keep count of client requests.
+        /*// - This example uses a session to keep count of client requests.
         HttpSession session = request.getSession();
 
         int myCount = 0;
@@ -38,7 +50,7 @@ public class GetLoginServlet extends HttpServlet {
         double ageInHours = (System.currentTimeMillis() - session.getCreationTime()) / (1000. * 60. * 60.);
         double lastAccessInHours = (System.currentTimeMillis() - session.getLastAccessedTime()) / (1000. * 60. * 60.);
 
-        out.println(String.format("Session created %.3f hours ago.", ageInHours ));
+        //out.println(String.format("Session created %.3f hours ago.", ageInHours ));
         out.println(String.format("Last accessed   %.3f hours ago.", lastAccessInHours ));
 
         // - This example lists every session variable
@@ -47,7 +59,7 @@ public class GetLoginServlet extends HttpServlet {
         while(attributes.hasMoreElements()) {
             String attribute = attributes.nextElement();
             out.println(String.format("  %s = '%s'", attribute, session.getAttribute(attribute).toString()));
-        }
+        }*/
 
     }
 
