@@ -24,9 +24,11 @@ function getLoginButton() {
         console.log(dataFromServer);
         $('#getSessionResult').html(dataFromServer);
 
-        if(dataFromServer.equals(null))
+        if((dataFromServer.trim())===("You are not logged in."))
         {
-            document.getElementByID("logOutDiv").style.display = "none";
+            document.getElementById("logOutDiv").style.display = "none";
+        } else {
+            document.getElementById("logOutDiv").style.display = "block";
         }
     });
 }
